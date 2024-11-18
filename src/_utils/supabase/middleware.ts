@@ -50,7 +50,9 @@ export const updateSession = async (request: NextRequest) => {
     const isProtectedRouteByOwner =
       request.nextUrl.pathname.startsWith("/meets/edit");
 
+    // 로그인 상태일 때
     if (user.data.user) {
+      // 만약 접근하고자 하는 경로가 '/sign-in'이라면 마이페이지로 리다이렉션
       if (request.nextUrl.pathname === "/sign-in") {
         return NextResponse.redirect(new URL("/mypage", request.url));
       }
